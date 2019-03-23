@@ -1,38 +1,43 @@
 
-
-      program identityMatrix
+      program idmat
       implicit none
-      integer :: n1
-      integer, allocatable :: array1(:,:)
-      print *, "How large an identity matrix do you want?"
-      read *, n1
-      allocate(array1( n1, n1))
-      identM(n1, array1)
-      call printMatrix( array1, n1)
+      integer :: n !user supplied rank of identity matrix
+      integer, allocatable, dimension(:,:) :: x1 
+      print *, "How big do you want the identity matrix to be?"
+      read *, n
+      allocate(x1(n,n))
+      call identityMatrix(x1, n)
+      call printMatrix(x1, n)
+      end program idmat
 
-      end program identityMatrix
 
-      function identM(n, matrix1)
-      integer, intent(in) :: n !input to the function
-      integer, dimension(n,n)   :: x1 !n x n identity matrix
-      integer, dimension(n,n), intent(out) :: matrix1 
-      integer :: col, row
-      do row = 1, n
-        do col = 1, n
+
+
+
+
+
+      subroutine identityMatrix(X, n) ! takes an n x n matrix x1 and turns it into an identity matrix
+!changed this subroutine the args arent in the same order, conforms with the arg ordering of printMatrix 
+!also, changed from x1 to X, to make it
+      implicit none
+      integer :: col, row, n 
+      integer, dimension(n,n) :: X !creating an identity matrix of rank n
+      do col = 1, n !changed col and row position to access in column-major order
+        do row = 1, n !http://kea.princeton.edu/ChE422/arrays.htm !details about column-major order
           if (col == row) then
-            x1(row, col) = 1
+            X(row, col) = 1
           else
-            x1(row, col) = 0
+            X(row, col) = 0
           end if
         end do
       end do
-      matrix1 = x1
-      end function identM
+      end subroutine identityMatrix
+
 
       subroutine printMatrix(array, n2) ! if this was to print a n x k matrix, I'd put a k on line 3, a k arg
         implicit none !in the subroutine and repalce the second n in the array(n,n) with a k
         integer, intent(in) :: array(n2,n2)  !creating an n x n identity matrix
-        integer, intent(in) :: n2 !declaring that it's an input? IDK lol
+        integer, intent(in) :: n2 !declaring that it's an input and not to be changed by running the subroutine
         integer :: i
         do i = 1, n2
           print*, array(i,:)

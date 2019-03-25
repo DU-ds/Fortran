@@ -1,0 +1,8 @@
+
+
+Lapack and Blas:
+https://stackoverflow.com/questions/35007006/error-in-linking-gfortran-to-lapack-and-blas
+
+https://stackoverflow.com/questions/20669410/gfortran-lapack-undefined-reference-error?answertab=active#tab-top
+
+

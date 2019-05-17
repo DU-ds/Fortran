@@ -19,7 +19,7 @@ C          https://stackoverflow.com/questions/3170239/fortran-integer4-vs-integ
          Real (kind = rp) :: a
          n = huge(n) ! https://stackoverflow.com/questions/9569756/fortran-the-largest-and-the-smallest-integer
          a = 0.0_rp
-         do i = 1,n,1
+         do i = 1,(n-1),1
             a = (a + (1.0_rp/i))         
          end do
          b = log(real(n)) !https://gcc.gnu.org/onlinedocs/gfortran/REAL.html
